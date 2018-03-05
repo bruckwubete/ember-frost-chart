@@ -29,10 +29,10 @@ module.exports = {
   },
 
   treeForVendor (vendorTree) {
-    const momentTree = new Funnel(path.join(this.project.root, 'node_modules', 'echarts', 'dist'), {
+    const echartTree = new Funnel(path.join(this.project.root, 'node_modules', 'echarts', 'dist'), {
       files: ['echarts-en.min.js']
     })
 
-    return new MergeTrees([vendorTree, momentTree])
+    return new MergeTrees([vendorTree, echartTree])
   }
 }

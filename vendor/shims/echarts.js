@@ -1,9 +1,9 @@
-(function() {
-  function vendorModule() {
-    'use strict';
+(function () {
+  function vendorModule () {
+    'use strict'
 
-    return { 'default': self['echarts'] };
+    return {'default': self['echarts']}
   }
 
-  define('echarts', [], vendorModule);
-})();
+  define('echarts', [], vendorModule)
+})()
