@@ -1,6 +1,10 @@
 /* eslint-env node */
 'use strict'
 
+const path = require('path')
+const Funnel = require('broccoli-funnel')
+const MergeTrees = require('broccoli-merge-trees')
+
 module.exports = {
   name: 'ember-frost-chart',
 
@@ -15,6 +19,20 @@ module.exports = {
     }
     // eslint-disable-next-line no-unused-expressions
     this._super.init && this._super.init.apply(this, arguments)
-  }
+  },
   /* eslint-enable complexity */
+
+  included () {
+    this._super.included.apply(this, arguments)
+    this.import('vendor/echarts-en.min.js')
+    this.import('vendor/shims/echarts.js')
+  },
+
+  treeForVendor (vendorTree) {
+    const momentTree = new Funnel(path.join(this.project.root, 'node_modules', 'echarts', 'dist'), {
+      files: ['echarts-en.min.js']
+    })
+
+    return new MergeTrees([vendorTree, momentTree])
+  }
 }
